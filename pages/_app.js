@@ -13,7 +13,8 @@ function MyApp({ Component, pageProps }) {
   return (
     <>
     <Head>
-    <title>Stealz</title>
+    <title>Stealz: Best Live Steam and Other Game Deals</title>
+        <meta name="description" content="Stealz: The Best Live, New Steam and Other Platform Game Deals on the Internet" />
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
     </Head>
     <Script
