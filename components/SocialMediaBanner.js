@@ -15,7 +15,7 @@ import { FaFacebook, FaTwitter } from 'react-icons/fa'
 
 export default function SocialButtons(){
 
-    const { toggleColorMode } = useColorMode({ initialColorMode: "dark" });
+    const { toggleColorMode } = useColorMode();
 
     return (
         <Box p="2" alignItems="center">
