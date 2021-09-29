@@ -25,7 +25,7 @@ export default function SocialButtons(){
                             Facebook
                     </Button>
                 </Link>
-                <Link href="https://twitter.com/stealzgg" isExternal="true">
+                <Link href="https://twitter.com/stealz_pro" isExternal="true">
                     <Button colorScheme="twitter" leftIcon={<FaTwitter />}>
                             Twitter
                     </Button>
