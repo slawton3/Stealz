@@ -1,106 +1,72 @@
 const axios = require('axios')
 import { Box,
-         Badge, 
-         Image,
-         ScaleFade, 
          Center, 
          Heading,
-         Skeleton,
+         SimpleGrid,
+         Spacer,
+         HStack
          } from "@chakra-ui/react";
-import { motion } from 'framer-motion'
-import LinkBoxModal from '../components/LinkBoxModal'
-import GameRating from '../components/GameRatings'
+import { VscFlame } from "react-icons/vsc";
+import DealBox from '../components/DealBox'
 import SocialButtons from '../components/SocialMediaBanner'
+import SearchComponent from '../components/SearchComponent'
 import Footer from '../components/Footer'
+import SiteMenu from '../components/Menu'
 import EmailNotificationButton from '../components/EmailNotificationForm'
 
 
 
-export default function DealsList({data}){
-
+export default function DealsList({data, stores}){
+    console.log(stores)
     return (<>
             <SocialButtons />
             <Center>
-            <Box w={500} p={4} m="20px auto" mb="2">
-                
-                <Heading as="h1" size="xl" textAlign="center">
-                    Find your Stealz
-                </Heading>
-                <Heading as="h2" size="l" textAlign="center" m={5}>
-                &bull;The best game deals on the Internet&bull; <br />
-                &bull;Live feed of the hottest new deals&bull;<br />
-                
-                </Heading>
-                <Center><EmailNotificationButton /></Center>
+            <Box w="100%" m={2}>
+                <HStack>
+                    <Box w="25%" />
+                    <Box w="50%">
+                        <Heading as="h1" size="xl" textAlign="center" m={2}>
+                                Find your Stealz
+                        </Heading>
+                    </Box>
+                    <Box w="25%">
+                        <SiteMenu />
+                    </Box>
+                </HStack> 
+            </Box>
+            </Center>
+            <Center>
+            <Box display={{ md: "flex" }}>
+            <HStack>
+                <Box>
+                    <Heading as="h2" size="2">
+                    New Deal Notifications <br />
+                    </Heading>
+                    <Center><EmailNotificationButton /></Center>
                 </Box>
-                </Center>
-                {data.map((deal) => (
-                    <div key={deal.dealID}>
+                <Spacer />
+                <Box>
+                    <Heading as="h2" size="2">
+                        Find a game:
+                    </Heading>
+                    <SearchComponent />
+                </Box>
+            </HStack>
+            </Box>
+            </Center>
+                    <Box>
+                    <Heading>
                         <Center>
-                        <Box width="lg" 
-                            borderWidth="1px"
-                            boxShadow="dark-lg"
-                            p="6" 
-                            mb="2" 
-                            rounded="lg" 
-                            overflow="hidden"
-                            >
-                        <motion.div 
-                            w="50%"
-                            className="hoverMotion"
-                            whileHover={{
-                                scale: 1.1,
-                            }}>
-                            
-                         
-                        <Box
-                            mt="1" 
-                            ml = "2"
-                            mr = "2"
-                            p={3}
-                            fontWeight="semibold"
-                            lineHeight="tight"
-                            isTruncated
-                            textAlign="center"
-                            >
-                            <Heading size="l">{deal.title}</Heading>
-                        </Box>
-                    
-                        <Center><Image src={deal.thumb} alt={deal.title} /></Center>
-                        <Center><Box p="6" textAlign="center">
-                            <Box d="flex" alignItems="baseline">
-                            <Badge
-                                fontSize="1em"
-                                colorScheme="orange"
-                                borderRadius="full"
-                                px="2"
-                                letterSpacing="wide">SAVE ${parseInt(deal.normalPrice) - parseInt(deal.salePrice)}!
-                            </Badge>
-                            <Badge borderRadius="full" px="2" ml="2" fontSize="1em" colorScheme="teal">
-                                Sale Price: ${deal.salePrice} 
-                            </Badge>
-                            <Box
-                                color="white.500"
-                                fontWeight="semibold"
-                                letterSpacing="wide"
-                                fontSize="xs"
-                                textTransform="uppercase"
-                                ml="2"
-                            >
-                               Normal Price: ${deal.normalPrice}
-                            </Box>
-                            
-                        </Box>
-                        <GameRating steamRatingPercent={deal.steamRatingPercent} steamRatingCount={deal.steamRatingCount} metacriticScore={deal.metacriticScore} />
-                        <Box mt="2"><Skeleton startColor="green.500" endColor="cyan.400" height="5px" /></Box>
-                        <Box mt="4"><LinkBoxModal id={deal.dealID} linkName={deal.title}/></Box>
+                            <VscFlame />Current Featured Deals<VscFlame />
+                        </Center>
+                    </Heading>
+                    <SimpleGrid columns={[2, 2, 2, 3]} spacing={5} p={4}>
+                        {data.map((deal) => (
+                            <DealBox {...deal}/>
+                        ))}
+                    </SimpleGrid>
                     </Box>
-                    </Center>
-                    </motion.div>
-                    </Box>
-                    </Center>
-                    </div>
-                ))}
+                
                 <Footer />
             </>  
         )
@@ -121,11 +87,15 @@ export async function getStaticProps(){
     try{
         const res = await axios.get('https://www.cheapshark.com/api/1.0/deals')
         const data = res.data
-        console.log(data)
-        data.sort(sortByProperty("steamRatingCount"))
-        return { props: { data }}
+
+        const storesRes = await axios.get('https://www.cheapshark.com/api/1.0/stores')
+        const stores = storesRes.data
+
+        //data.sort(sortByProperty("steamRatingCount"))
+        return { props: { data, stores }}
     }
     catch(err){
         console.log(err)
     }
+
 }
