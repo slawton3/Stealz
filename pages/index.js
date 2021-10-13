@@ -4,6 +4,8 @@ import { Box,
          Heading,
          SimpleGrid,
          Spacer,
+         Text,
+         Flex,
          HStack
          } from "@chakra-ui/react";
 import { VscFlame } from "react-icons/vsc";
@@ -13,25 +15,27 @@ import SearchComponent from '../components/SearchComponent'
 import Footer from '../components/Footer'
 import SiteMenu from '../components/Menu'
 import EmailNotificationButton from '../components/EmailNotificationForm'
-
+import Image from 'next/image'
+import flameGif from '../assets/flame.gif'
 
 
 export default function DealsList({data, stores}){
+    const gif = <Image src={flameGif} alt='flame gif' height="50" width="50"/>
     console.log(stores)
     return (<>
             <SocialButtons />
             <Center>
             <Box w="100%" m={2}>
                 <HStack>
-                    <Box w="25%" />
+                    <Flex w="25%" justifyContent="flex-end"><SearchComponent /></Flex>
                     <Box w="50%">
                         <Heading as="h1" size="xl" textAlign="center" m={2}>
                                 Find your Stealz
                         </Heading>
                     </Box>
-                    <Box w="25%">
+                    <Flex w="25%" justifyContent="flex-start">
                         <SiteMenu />
-                    </Box>
+                    </Flex>
                 </HStack> 
             </Box>
             </Center>
@@ -44,20 +48,13 @@ export default function DealsList({data, stores}){
                     </Heading>
                     <Center><EmailNotificationButton /></Center>
                 </Box>
-                <Spacer />
-                <Box>
-                    <Heading as="h2" size="2">
-                        Find a game:
-                    </Heading>
-                    <SearchComponent />
-                </Box>
             </HStack>
             </Box>
             </Center>
                     <Box>
                     <Heading>
                         <Center>
-                            <VscFlame />Current Featured Deals<VscFlame />
+                            {gif}<Text fontSize="3xl" ml={4}>Current Deals</Text>{gif}
                         </Center>
                     </Heading>
                     <SimpleGrid columns={[2, 2, 2, 3]} spacing={5} p={4}>

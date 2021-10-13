@@ -15,9 +15,7 @@ import GameRating from '../components/GameRatings'
 
 
 export default function DealBox(props){
-    const imageSrc = `https://www.cheapshark.com/img/stores/icons/${(parseInt(props.storeID)-1)}.png`
-
-    return (  <div key={props.dealID}>
+   return (  <div key={props.dealID}>
                         <Box
                             key={props.dealID}
                             display={{ md: "flex" }}
@@ -32,9 +30,7 @@ export default function DealBox(props){
                                 src={props.thumb}
                                 alt={props.title} />
 
-                            <Image borderRadius="lg"
-                                src={imageSrc}
-                                alt={props.storeID} />
+                            
                         </Box>
                         <Box
                             mt={{ base: 4, md: 0 }}
@@ -57,7 +53,7 @@ export default function DealBox(props){
                                     ${props.salePrice}!
                                 </Text>
                             </Badge>
-                        <GameRating steamRatingPercent={props.steamRatingPercent} steamRatingCount={props.steamRatingCount} metacriticScore={props.metacriticScore} />
+                        <GameRating steamRatingPercent={props.steamRatingPercent} steamRatingCount={props.steamRatingCount} metacriticScore={props.metacriticScore} imageSrcLink={props.storeID} />
                         <Box mt="2"><Skeleton startColor="green.500" endColor="cyan.400" height="5px" /></Box>
                         <Box mt="4"><LinkBoxModal id={props.dealID} linkName={props.title}/></Box>
                     </Box>
