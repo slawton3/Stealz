@@ -18,7 +18,7 @@ import { useForm, Controller } from "react-hook-form";
 import { useState } from 'react'
 import { SearchIcon } from '@chakra-ui/icons'
 import axios from 'axios'
-import OnChangeResponse from '../components/OnChangeResponse'
+import OnChangeResponse from './OnChangeResponse'
 
 export default function SearchComponent(props){
 

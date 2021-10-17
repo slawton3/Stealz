@@ -17,7 +17,7 @@ export default function OnChangeResponse(props){
     console.log(props.response)
     if(props.response.length != 0){
         const options = props.response.data.map(r => (
-            <Link href="/games">
+            <Link href={`/games/${r.gameID}`}>
             <Flex key={r.gameID} borderWidth="1px">
                 <Box p="2" as="button" borderWidth="1px">
                 <Image

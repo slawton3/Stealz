@@ -9,8 +9,8 @@ import { Box,
          Text
          } from "@chakra-ui/react";
 import { motion } from 'framer-motion'
-import LinkBoxModal from '../components/LinkBoxModal'
-import GameRating from '../components/GameRatings'
+import LinkBoxModal from '../Base/LinkBoxModal'
+import GameRating from './GameRatings'
 
 
 

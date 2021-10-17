@@ -9,12 +9,12 @@ import { Box,
          HStack
          } from "@chakra-ui/react";
 import { VscFlame } from "react-icons/vsc";
-import DealBox from '../components/DealBox'
-import SocialButtons from '../components/SocialMediaBanner'
-import SearchComponent from '../components/SearchComponent'
-import Footer from '../components/Footer'
-import SiteMenu from '../components/Menu'
-import EmailNotificationButton from '../components/EmailNotificationForm'
+import DealBox from '../components/Games/DealBox'
+import SocialButtons from '../components/Base/SocialMediaBanner'
+import SearchComponent from '../components/Games/SearchComponent'
+import Footer from '../components/Base/Footer'
+import SiteMenu from '../components/Base/Menu'
+import EmailNotificationButton from '../components/Base/EmailNotificationForm'
 import Image from 'next/image'
 import flameGif from '../assets/flame.gif'
 
@@ -88,7 +88,7 @@ export async function getStaticProps(){
         const storesRes = await axios.get('https://www.cheapshark.com/api/1.0/stores')
         const stores = storesRes.data
 
-        //data.sort(sortByProperty("steamRatingCount"))
+        data.sort(sortByProperty("steamRatingCount"))
         return { props: { data, stores }}
     }
     catch(err){
