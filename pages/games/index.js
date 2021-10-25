@@ -9,20 +9,17 @@ import { Box,
          HStack
          } from "@chakra-ui/react";
 import { VscFlame } from "react-icons/vsc";
-import DealBox from '../components/Games/DealBox'
-import SocialButtons from '../components/Base/SocialMediaBanner'
-import SearchComponent from '../components/Games/SearchComponent'
-import Footer from '../components/Base/Footer'
-import SiteMenu from '../components/Base/Menu'
-import EmailNotificationButton from '../components/Base/EmailNotificationForm'
+import DealBox from '../../components/Games/DealBox'
+import SocialButtons from '../../components/Base/SocialMediaBanner'
+import SearchComponent from '../../components/Games/SearchComponent'
+import Footer from '../../components/Base/Footer'
+import SiteMenu from '../../components/Base/Menu'
+import EmailNotificationButton from '../../components/Base/EmailNotificationForm'
 import Image from 'next/image'
-import flameGif from '../assets/flame.gif'
+import flameGif from '../../assets/flame.gif'
 
 
-export default function DealsList({data, stores}){
-
-    const gif = <Image src={flameGif} alt='flame gif' height="50" width="50"/>
-    
+export default function GamePage({props}){
     return (<>
             <SocialButtons />
             <Center>
@@ -44,7 +41,7 @@ export default function DealsList({data, stores}){
             <Box display={{ md: "flex" }}>
             <HStack>
                 <Box>
-                    <Heading as="h2" size="2" mb={2}>
+                    <Heading as="h2" size="2">
                     New Deal Notifications <br />
                     </Heading>
                     <Center><EmailNotificationButton /></Center>
@@ -52,17 +49,12 @@ export default function DealsList({data, stores}){
             </HStack>
             </Box>
             </Center>
-                    <Box mt={6}>
+                    <Box>
                     <Heading>
                         <Center>
-                            {gif}<Text fontSize="3xl" ml={4}>Hottest Deals</Text>{gif}
+                            <Text fontSize="3xl" ml={4}>Game Title</Text>
                         </Center>
                     </Heading>
-                    <SimpleGrid columns={[2, 2, 2, 3]} spacing={5} p={4}>
-                        {data.map((deal) => (
-                            <DealBox key={deal.dealID} {...deal}/>
-                        ))}
-                    </SimpleGrid>
                     </Box>
                 
                 <Footer />
