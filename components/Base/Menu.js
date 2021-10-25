@@ -3,6 +3,7 @@ import {
     MenuButton,
     MenuList,
     MenuItem,
+    Link,
     IconButton
   } from "@chakra-ui/react"
 
@@ -24,12 +25,21 @@ export default function SiteMenu(){
                 variant="outline"
             />
             <MenuList>
-                <MenuItem>
-                    Get Your Game Featured
-                </MenuItem>
-                <MenuItem>
-                    Contact
-                </MenuItem>
+                <Link href="/">
+                    <MenuItem>
+                        Home
+                    </MenuItem>
+                </Link>
+                <Link href="/contact">
+                    <MenuItem>
+                        Get Your Game Featured
+                    </MenuItem>
+                </Link>
+                <Link href="/contact">
+                    <MenuItem>
+                        Contact
+                    </MenuItem>
+                </Link>
             </MenuList>
         </Menu>
     )

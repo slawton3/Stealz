@@ -20,8 +20,9 @@ import flameGif from '../assets/flame.gif'
 
 
 export default function DealsList({data, stores}){
+
     const gif = <Image src={flameGif} alt='flame gif' height="50" width="50"/>
-    console.log(stores)
+    
     return (<>
             <SocialButtons />
             <Center>
@@ -43,7 +44,7 @@ export default function DealsList({data, stores}){
             <Box display={{ md: "flex" }}>
             <HStack>
                 <Box>
-                    <Heading as="h2" size="2">
+                    <Heading as="h2" size="2" mb={2}>
                     New Deal Notifications <br />
                     </Heading>
                     <Center><EmailNotificationButton /></Center>
@@ -51,15 +52,15 @@ export default function DealsList({data, stores}){
             </HStack>
             </Box>
             </Center>
-                    <Box>
+                    <Box mt={6}>
                     <Heading>
                         <Center>
-                            {gif}<Text fontSize="3xl" ml={4}>Current Deals</Text>{gif}
+                            {gif}<Text fontSize="3xl" ml={4}>Hottest Deals</Text>{gif}
                         </Center>
                     </Heading>
                     <SimpleGrid columns={[2, 2, 2, 3]} spacing={5} p={4}>
                         {data.map((deal) => (
-                            <DealBox {...deal}/>
+                            <DealBox key={deal.dealID} {...deal}/>
                         ))}
                     </SimpleGrid>
                     </Box>

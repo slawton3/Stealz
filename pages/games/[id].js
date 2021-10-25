@@ -19,11 +19,10 @@ import AllGameDeals from '../../components/Games/AllGameDeals';
 
 
 
-export default function GamePage({ gameData }){
-    const propData = () => {
-        gameData.deals.map((deal) => {
-            return {...gameData, ...deal}
-        })
+export default function GamePage({ gameData, storeData }){
+    const gameProps = {
+        gameData: gameData,
+        storeData: storeData
     }
     return (<>
             <SocialButtons />
@@ -54,19 +53,17 @@ export default function GamePage({ gameData }){
             </HStack>
             </Box>
             </Center>
-                    <Box>
+                    <Box mt={8}>
                     <Heading>
                         <Center>
-                            <Text fontSize="3xl" ml={4}>Best Deals for {gameData.info.title}</Text>
+                            <Text align="center" fontSize="3xl" ml={4}>Best Deals for {gameData.info.title}</Text>
                         </Center>
                     </Heading>
                     </Box>
                     <Box>
-                    <SimpleGrid columns={[2, 2, 2, 3]} spacing={5} p={4}>
-                        {gameData.deals.map((deal) => (
-                            <AllGameDeals {...propData}/>
-                        ))}
-                    </SimpleGrid>
+                        <SimpleGrid columns={[2, 2, 2, 3]} spacing={5} p={4}>
+                            <AllGameDeals key={gameData.deals.dealID} {...gameProps}/>
+                        </SimpleGrid>
                     </Box>
                 <Footer />
             </>  
@@ -77,5 +74,7 @@ export async function getServerSideProps(context) {
     const gameID = context.query.id;
     const res = await axios.get(`https://www.cheapshark.com/api/1.0/games?id=${gameID}`);
     const gameData = res.data
-    return { props: { gameData } };
+    const storeRes = await axios.get('https://www.cheapshark.com/api/1.0/stores')
+    const storeData = storeRes.data
+    return { props: { gameData, storeData } };
   }

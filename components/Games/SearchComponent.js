@@ -37,7 +37,7 @@ export default function SearchComponent(props){
     async function onChange(e){
         const name = e.target.value
         console.log(name)
-        const res = await axios.get(`https://www.cheapshark.com/api/1.0/games?title=${name}&exact=0`)
+        const res = await axios.get(`https://www.cheapshark.com/api/1.0/games?title=${name}&exact=0&limit=15`)
         
         setSearchSuggestions(res)
         console.log(searchSuggestions)

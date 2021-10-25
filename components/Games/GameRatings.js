@@ -9,7 +9,7 @@ import { StarIcon } from '@chakra-ui/icons'
 
 
 export default function GameRating(props){
-  const imageSrc = `https://www.cheapshark.com/img/stores/icons/${(parseInt(props.imageSrcLink)-1)}.png`
+  
     return (
         <HStack>
         <Box>
@@ -23,9 +23,7 @@ export default function GameRating(props){
               />
             ))}
           <Box>
-            {props.steamRatingCount} reviews <Image
-                                src={imageSrc}
-                                alt={props.storeID} />
+            {props.steamRatingCount} reviews 
           </Box>
           <Box>
             {parseInt(props.metacriticScore) != 0 ? `Metacritic Score: ${props.metacriticScore}` : "Metacritic Score: N/A"}
