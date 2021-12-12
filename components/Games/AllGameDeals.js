@@ -54,7 +54,7 @@ export default function AllGameDeals( gameProps ){
                         src={gameData.info.thumb}
                         alt={gameData.info.title} />
                     <Box>
-                    <Image src={gameDeal.imageSrc} alt={gameDeal.external}></Image>
+                    <Image loading="lazy" src={gameDeal.imageSrc} alt={gameDeal.external}></Image>
                     <Text 
                         size={{sm: 0.5, md: 1, lg: 1}}
                         fontWeight="bold"
