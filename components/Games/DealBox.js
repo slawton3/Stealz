@@ -25,6 +25,7 @@ export default function DealBox(props){
                             
                         <Box flexShrink={0}>
                             <Image borderRadius="lg"
+                                loading="lazy"
                                 width={{ md: 40 }}
                                 height={{ md: 20 }}
                                 src={props.thumb}
