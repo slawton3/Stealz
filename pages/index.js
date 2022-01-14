@@ -81,7 +81,7 @@ function sortByProperty(property){
     }  
  }
 
-export async function getStaticProps(){
+export async function getServerSideProps(){
     try{
         const res = await axios.get('https://www.cheapshark.com/api/1.0/deals')
         const data = res.data
